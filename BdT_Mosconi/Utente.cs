@@ -15,6 +15,7 @@ namespace BdT_Mosconi
         public DateTime _birth;
         public int _telephone;
         public string _area;
+        public string _job;
         public int _hours;
 
         public string Id
@@ -101,6 +102,20 @@ namespace BdT_Mosconi
                     throw new Exception("Area non valida");
             }
         }
+        public string Job
+        {
+            get
+            {
+                return _job;
+            }
+            private set
+            {
+                if (value != null)
+                    _job = value;
+                else
+                    throw new Exception("Lavoro non valido");
+            }
+        }
         public int Hours
         {
             get
@@ -116,7 +131,7 @@ namespace BdT_Mosconi
             }
         }
 
-        public Utente(string name, string surname, DateTime birth, int telephone, string area)
+        public Utente(string name, string surname, DateTime birth, int telephone, string area, string job)
         {
             Id = CalcolaId(name, surname);
             Name = name;
@@ -124,9 +139,10 @@ namespace BdT_Mosconi
             Birth = birth;
             Telephone = telephone;
             Area = area;
+            Job = job;
             Hours = 0;
         }
-        public Utente(string id, string name, string surname, DateTime birth, int telephone, string area, int hours)
+        public Utente(string id, string name, string surname, DateTime birth, int telephone, string area, string job, int hours)
         {
             Id = id;
             Name = name;
@@ -134,11 +150,11 @@ namespace BdT_Mosconi
             Birth = birth;
             Telephone = telephone;
             Area = area;
+            Job = job;
             Hours = hours;
         }
 
-
-        protected Utente(Utente other) : this(other.Id, other.Name, other.Surname, other.Birth, other.Telephone, other.Area, other.Hours)
+        protected Utente(Utente other) : this(other.Id, other.Name, other.Surname, other.Birth, other.Telephone, other.Area, other.Job, other.Hours)
         {
         }
         public Utente Clone()
@@ -155,7 +171,7 @@ namespace BdT_Mosconi
         }
         public override string ToString()
         {
-            return $"Utente: {Id}; {Name}; {Surname}; {Birth.ToString("d")}; {Telephone}; {Area}; {Hours}";
+            return $"Utente: {Id}; {Name}; {Surname}; {Birth.ToString("d")}; {Telephone}; {Area}; {Job}; {Hours}";
         }
 
         private string CalcolaId(string name, string surname)
