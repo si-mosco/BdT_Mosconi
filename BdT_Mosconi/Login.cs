@@ -74,5 +74,11 @@ namespace BdT_Mosconi
                 }
             }
         }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Visible = false;
+        }
     }
 }

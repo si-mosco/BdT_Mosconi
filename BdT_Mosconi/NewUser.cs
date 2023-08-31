@@ -71,7 +71,8 @@ namespace BdT_Mosconi
                 Utente nuovo = new Utente(textBox1.Text, textBox2.Text, birth, double.Parse(textBox3.Text), comboBox1.Text, comboBox2.Text);
                 Aggiungi(nuovo);
                 MessageBox.Show("Aggiunta eseguita con SUCCESSO");
-                this.Close();
+
+                this.Visible = false;
             }
         }
 
@@ -106,6 +107,12 @@ namespace BdT_Mosconi
 
             System.IO.File.Delete(@"Users.json");
             System.IO.File.Move(@"./Users2.json", @"Users.json");
+        }
+
+        private void NewUser_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Visible = false;
         }
     }
 }

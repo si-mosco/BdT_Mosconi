@@ -125,5 +125,11 @@ namespace BdT_Mosconi
             }
             LoadUser();
         }
+
+        private void Elenco_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Visible = false;
+        }
     }
 }

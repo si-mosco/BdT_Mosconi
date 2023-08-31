@@ -85,6 +85,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Elenco";
             this.Text = "Elenco";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Elenco_FormClosing);
             this.Load += new System.EventHandler(this.Elenco_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
