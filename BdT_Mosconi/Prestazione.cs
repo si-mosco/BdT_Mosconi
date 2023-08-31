@@ -25,7 +25,7 @@ namespace BdT_Mosconi
             }
             private set
             {
-                if (value != null)
+                if (!String.IsNullOrWhiteSpace(value))
                     _id = value;
                 else
                     throw new Exception("Id non valido");
@@ -39,7 +39,7 @@ namespace BdT_Mosconi
             }
             private set
             {
-                if (value != null)
+                if (!String.IsNullOrWhiteSpace(value))
                     _description = value;
                 else
                     throw new Exception("Descrizione non valido");

@@ -27,7 +27,27 @@ namespace BdT_Mosconi
             Frassino
             Valdaro
             Virgiliana  
+
+
+            I lavori possibili sono
+            Elettricista
+            Idraulico
+            Giardiniere
+            Parrucchiere
+            Pulizie
+            Insegnante
+            Babysitter
+            Segreteria
+
+            string jsonString = JsonConvert.SerializeObject(nuovo, Formatting.Indented);
+            Utente temp = JsonConvert.DeserializeObject<Utente>(jsonString);
             */
+        }
+
+        private void button1_Click(object sender, EventArgs e)//aggiunta utente
+        {
+            NewUser NU = new NewUser();
+            NU.Show();
         }
     }
 }

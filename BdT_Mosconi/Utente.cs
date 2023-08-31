@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -9,15 +10,16 @@ namespace BdT_Mosconi
 {
     public class Utente
     {
-        public string _id;
-        public string _name;
-        public string _surname;
-        public DateTime _birth;
-        public int _telephone;
-        public string _area;
-        public string _job;
-        public int _hours;
+        private string _id;
+        private string _name;
+        private string _surname;
+        private DateTime _birth;
+        private double _telephone;
+        private string _area;
+        private string _job;
+        private int _hours;
 
+        [JsonProperty]
         public string Id
         {
             get
@@ -26,12 +28,13 @@ namespace BdT_Mosconi
             }
             private set
             {
-                if(value != null)
+                if(!String.IsNullOrWhiteSpace(value))
                     _id = value;
                 else
                     throw new Exception("Id non valido");
             }
         }
+        [JsonProperty]
         public string Name
         {
             get
@@ -40,12 +43,13 @@ namespace BdT_Mosconi
             }
             private set
             {
-                if (value != null)
+                if (!String.IsNullOrWhiteSpace(value))
                     _name = value;
                 else
                     throw new Exception("Nome non valido");
             }
         }
+        [JsonProperty]
         public string Surname
         {
             get
@@ -54,12 +58,13 @@ namespace BdT_Mosconi
             }
             private set
             {
-                if (value != null)
+                if (!String.IsNullOrWhiteSpace(value))
                     _surname = value;
                 else
                     throw new Exception("Cognome non valido");
             }
         }
+        [JsonProperty]
         public DateTime Birth
         {
             get
@@ -74,7 +79,8 @@ namespace BdT_Mosconi
                     throw new Exception("Data di Nascita non valida");
             }
         }
-        public int Telephone
+        [JsonProperty]
+        public double Telephone
         {
             get
             {
@@ -82,12 +88,13 @@ namespace BdT_Mosconi
             }
             private set
             {
-                if (value != null && value.ToString().Length==10)
+                if (!String.IsNullOrWhiteSpace(value.ToString()) && value.ToString().Length==10)
                     _telephone = value;
                 else
                     throw new Exception("Numero di Telefono non valido");
             }
         }
+        [JsonProperty]
         public string Area
         {
             get
@@ -96,12 +103,13 @@ namespace BdT_Mosconi
             }
             private set
             {
-                if (value != null && (value == "Centro Storico" || value == "Cittadella" || value == "Lunetta" || value == "Frassino" || value == "Valdaro" || value == "Virgiliana"))
+                if (!String.IsNullOrWhiteSpace(value) && (value == "Centro Storico" || value == "Cittadella" || value == "Lunetta" || value == "Frassino" || value == "Valdaro" || value == "Virgiliana"))
                     _area = value;
                 else
                     throw new Exception("Area non valida");
             }
         }
+        [JsonProperty]
         public string Job
         {
             get
@@ -110,12 +118,13 @@ namespace BdT_Mosconi
             }
             private set
             {
-                if (value != null)
+                if (!String.IsNullOrWhiteSpace(value))
                     _job = value;
                 else
                     throw new Exception("Lavoro non valido");
             }
         }
+        [JsonProperty]
         public int Hours
         {
             get
@@ -131,7 +140,7 @@ namespace BdT_Mosconi
             }
         }
 
-        public Utente(string name, string surname, DateTime birth, int telephone, string area, string job)
+        public Utente(string name, string surname, DateTime birth, double telephone, string area, string job)
         {
             Id = CalcolaId(name, surname);
             Name = name;
@@ -142,7 +151,7 @@ namespace BdT_Mosconi
             Job = job;
             Hours = 0;
         }
-        public Utente(string id, string name, string surname, DateTime birth, int telephone, string area, string job, int hours)
+        public Utente(string id, string name, string surname, DateTime birth, double telephone, string area, string job, int hours)
         {
             Id = id;
             Name = name;
@@ -152,6 +161,10 @@ namespace BdT_Mosconi
             Area = area;
             Job = job;
             Hours = hours;
+        }
+        public Utente()
+        {
+
         }
 
         protected Utente(Utente other) : this(other.Id, other.Name, other.Surname, other.Birth, other.Telephone, other.Area, other.Job, other.Hours)
