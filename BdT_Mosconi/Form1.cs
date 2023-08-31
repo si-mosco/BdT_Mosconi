@@ -12,13 +12,18 @@ namespace BdT_Mosconi
 {
     public partial class Form1 : Form
     {
+        NewUser Nu = new NewUser();
+        Login L = new Login();
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Reload();
+
             /*
             IL paese a prescindere è MANTOVA: i quartieri sono 
             Centro Storico
@@ -44,10 +49,24 @@ namespace BdT_Mosconi
             */
         }
 
+        private void Reload()
+        {
+            button1.Enabled = L.permission;
+        }
+
         private void button1_Click(object sender, EventArgs e)//aggiunta utente
         {
-            NewUser NU = new NewUser();
-            NU.Show();
+            Nu.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            L.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Reload();
         }
     }
 }

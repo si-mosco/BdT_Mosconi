@@ -18,16 +18,15 @@ namespace BdT_Mosconi
         public NewUser()
         {
             InitializeComponent();
-
+        }
+        private void NewUser_Load(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
             comboBox1.Text = comboBox1.Items[0].ToString();
             comboBox2.Text = comboBox2.Items[0].ToString();
         }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             bool done = true;
@@ -71,6 +70,7 @@ namespace BdT_Mosconi
             {
                 Utente nuovo = new Utente(textBox1.Text, textBox2.Text, birth, double.Parse(textBox3.Text), comboBox1.Text, comboBox2.Text);
                 Aggiungi(nuovo);
+                MessageBox.Show("Aggiunta eseguita con SUCCESSO");
             }
         }
 
@@ -95,7 +95,7 @@ namespace BdT_Mosconi
                 else
                 {
                     //aggiunta classe jsonata
-                    string jsonString = JsonConvert.SerializeObject(nuovo, Formatting.Indented);
+                    string jsonString = JsonConvert.SerializeObject(nuovo, Formatting.None);
                     sw.WriteLine(jsonString);
                     i = 1;
                 }
@@ -105,11 +105,6 @@ namespace BdT_Mosconi
 
             System.IO.File.Delete(@"Users.json");
             System.IO.File.Move(@"./Users2.json", @"Users.json");
-        }
-
-        private void NewUser_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
         }
     }
 }
