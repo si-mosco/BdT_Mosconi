@@ -71,6 +71,7 @@ namespace BdT_Mosconi
                 Utente nuovo = new Utente(textBox1.Text, textBox2.Text, birth, double.Parse(textBox3.Text), comboBox1.Text, comboBox2.Text);
                 Aggiungi(nuovo);
                 MessageBox.Show("Aggiunta eseguita con SUCCESSO");
+                this.Close();
             }
         }
 
