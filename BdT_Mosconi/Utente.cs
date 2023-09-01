@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BdT_Mosconi
 {
-    public class Utente
+    public class Utente : IEquatable<Utente>
     {
         private string _id;
         private string _name;

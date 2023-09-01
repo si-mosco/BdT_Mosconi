@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace BdT_Mosconi
 {
-    public class Prestazione
+    public class Prestazione: IEquatable<Prestazione>
     {
         private string _id;
         private string _description;

@@ -15,6 +15,7 @@ namespace BdT_Mosconi
         NewUser Nu = new NewUser();
         Login L = new Login();
         Elenco E = new Elenco();
+        NewTask Nt = new NewTask();
         public Form1()
         {
             InitializeComponent();
@@ -54,6 +55,7 @@ namespace BdT_Mosconi
         {
             button1.Enabled = L.permission;
             button4.Enabled = L.permission;
+            button5.Enabled = L.permission;
         }
 
         private void button1_Click(object sender, EventArgs e)//aggiunta utente
@@ -74,6 +76,11 @@ namespace BdT_Mosconi
         private void button4_Click(object sender, EventArgs e)
         {
             E.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Nt.Show();
         }
     }
 }
