@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace BdT_Mosconi
 {
@@ -19,6 +22,11 @@ namespace BdT_Mosconi
         public Form1()
         {
             InitializeComponent();
+            listView1.Columns.Add("ID", 120);
+            listView1.Columns.Add("REQUESTER", 90);
+            listView1.Columns.Add("HOURS", 60);
+            listView1.Columns.Add("JOB", 75);
+            listView1.Columns.Add("DESCRIPTION", 125);
             
         }
 
@@ -53,6 +61,7 @@ namespace BdT_Mosconi
 
         private void Reload()
         {
+            LoadTask();
             button1.Enabled = L.permission;
             button4.Enabled = L.permission;
             button5.Enabled = L.permission;
@@ -81,6 +90,40 @@ namespace BdT_Mosconi
         private void button5_Click(object sender, EventArgs e)
         {
             Nt.Show();
+        }
+        public void LoadTask()
+        {
+            listView1.Items.Clear();
+            listView1.View = View.Details;
+            listView1.FullRowSelect = true;
+
+            StreamReader sr = new StreamReader(@"Tasks.json");
+
+            string line = "";
+            while (!sr.EndOfStream)
+            {
+                line = sr.ReadLine();
+
+                if (line != null)
+                {
+                    Prestazione temp = JsonConvert.DeserializeObject<Prestazione>(line);
+
+                    string[] items2 = new string[8];
+                    items2[0] = temp.Id;
+                    items2[1] = temp.Requester.Id;
+                    items2[2] = temp.Hours.ToString();
+                    items2[3] = temp.Job;
+                    items2[4] = temp.Description;
+                    ListViewItem item = new ListViewItem(items2);
+                    listView1.Items.Add(item);
+                }
+            }
+            sr.Close();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

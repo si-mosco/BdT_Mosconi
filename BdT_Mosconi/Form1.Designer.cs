@@ -33,6 +33,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // button1
@@ -47,7 +48,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(652, 12);
+            this.button2.Location = new System.Drawing.Point(707, 11);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(136, 49);
             this.button2.TabIndex = 1;
@@ -85,11 +86,22 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(165, 79);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(678, 332);
+            this.listView1.TabIndex = 5;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(874, 450);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -109,6 +121,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ListView listView1;
     }
 }
 

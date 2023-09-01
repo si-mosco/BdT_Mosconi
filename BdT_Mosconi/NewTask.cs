@@ -82,7 +82,7 @@ namespace BdT_Mosconi
 
             if (done)
             {
-                Prestazione nuovo = new Prestazione(CreateId(textBox1.Text, comboBox1.Text, textBox3.Text), textBox2.Text, requester, int.Parse(textBox3.Text));
+                Prestazione nuovo = new Prestazione(CreateId(textBox1.Text, comboBox1.Text, textBox3.Text), comboBox1.Text, textBox2.Text, requester, int.Parse(textBox3.Text));
                 Aggiungi(nuovo);
                 MessageBox.Show("Aggiunta eseguita con SUCCESSO");
 
@@ -96,7 +96,7 @@ namespace BdT_Mosconi
             textBox2.Text = "";
             textBox3.Text = "";
             comboBox1.Items.Clear();
-            comboBox1.Text = comboBox1.Items[0].ToString();
+            comboBox1.Text = "";
         }
         public static string CreateId(string RequesterId, string Job, string Hours)
         {
