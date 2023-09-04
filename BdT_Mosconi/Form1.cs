@@ -19,6 +19,7 @@ namespace BdT_Mosconi
         Login L = new Login();
         Elenco E = new Elenco();
         NewTask Nt = new NewTask();
+        Completamento C = new Completamento();
         public Form1()
         {
             InitializeComponent();
@@ -93,7 +94,6 @@ namespace BdT_Mosconi
         }
         public void LoadTask()
         {
-            int i = 0;
             List<Prestazione> tmp = new List<Prestazione>();
 
             listView1.Items.Clear();
@@ -110,8 +110,8 @@ namespace BdT_Mosconi
                 if (line != null)
                 {
                     Prestazione temp = JsonConvert.DeserializeObject<Prestazione>(line);
-                    tmp.Add(temp);
-                    i++;
+                    if (temp.Complete == checkBox1.Checked) 
+                        tmp.Add(temp);
                 }
             }
             sr.Close();
@@ -144,7 +144,7 @@ namespace BdT_Mosconi
 
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (listView1.SelectedItems.Count > 0)
+            if (listView1.SelectedItems.Count > 0 && e.Button.ToString()=="Left" && L.permission)
             {
                 string id = listView1.SelectedItems[0].SubItems[0].Text;
 
@@ -176,6 +176,21 @@ namespace BdT_Mosconi
                 System.IO.File.Move(@"./Tasks2.json", @"Tasks.json");
             }
             LoadTask();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadTask();
+        }
+
+        private void listView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0 && e.Button.ToString() == "Right" && L.permission)
+            {
+                string id = listView1.SelectedItems[0].SubItems[0].Text;
+                C.id = id;
+                C.Show();
+            }
         }
     }
 }

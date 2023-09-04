@@ -131,7 +131,7 @@ namespace BdT_Mosconi
             {
                 return _hours;
             }
-            private set
+            set
             {
                 if (value != null)
                     _hours = value;
