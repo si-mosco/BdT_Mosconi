@@ -67,22 +67,10 @@ namespace BdT_Mosconi
                 done = false;
                 MessageBox.Show("Il campo 'Description' è errato");
             }
-            if (String.IsNullOrWhiteSpace(textBox3.Text))
-            {
-                try
-                {
-                    double temp = double.Parse(textBox3.Text);
-                }
-                catch
-                {
-                    done = false;
-                    MessageBox.Show("Il campo 'Number of Hours' è errato");
-                }
-            }
 
             if (done)
             {
-                Prestazione nuovo = new Prestazione(CreateId(textBox1.Text, comboBox1.Text, textBox3.Text), comboBox1.Text, textBox2.Text, requester, int.Parse(textBox3.Text));
+                Prestazione nuovo = new Prestazione(CreateId(textBox1.Text, comboBox1.Text, numericUpDown1.Value.ToString()), comboBox1.Text, textBox2.Text, requester, int.Parse(numericUpDown1.Value.ToString()));
                 Aggiungi(nuovo);
                 MessageBox.Show("Aggiunta eseguita con SUCCESSO");
 
@@ -94,7 +82,7 @@ namespace BdT_Mosconi
         {
             textBox1.Text = "";
             textBox2.Text = "";
-            textBox3.Text = "";
+            numericUpDown1.Value = 1;
             comboBox1.Items.Clear();
             comboBox1.Text = "";
         }
