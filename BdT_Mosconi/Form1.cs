@@ -93,6 +93,9 @@ namespace BdT_Mosconi
         }
         public void LoadTask()
         {
+            int i = 0;
+            List<Prestazione> tmp = new List<Prestazione>();
+
             listView1.Items.Clear();
             listView1.View = View.Details;
             listView1.FullRowSelect = true;
@@ -107,23 +110,72 @@ namespace BdT_Mosconi
                 if (line != null)
                 {
                     Prestazione temp = JsonConvert.DeserializeObject<Prestazione>(line);
-
-                    string[] items2 = new string[8];
-                    items2[0] = temp.Id;
-                    items2[1] = temp.Requester.Id;
-                    items2[2] = temp.Hours.ToString();
-                    items2[3] = temp.Job;
-                    items2[4] = temp.Description;
-                    ListViewItem item = new ListViewItem(items2);
-                    listView1.Items.Add(item);
+                    tmp.Add(temp);
+                    i++;
                 }
             }
             sr.Close();
+
+            /*
+             * List<Order> objListOrder = new List<Order>();
+             * List<Order> SortedList = objListOrder.OrderBy(o=>o.OrderDate).ToList();
+
+            */
+
+            tmp = tmp.OrderByDescending(o => o.Hours).ToList();
+            foreach (Prestazione k in tmp)
+            {
+                string[] items2 = new string[5];
+                items2[0] = k.Id;
+                items2[1] = k.Requester.Id;
+                items2[2] = k.Hours.ToString();
+                items2[3] = k.Job;
+                items2[4] = k.Description;
+                ListViewItem item = new ListViewItem(items2);
+                listView1.Items.Add(item);
+            }
+
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                string id = listView1.SelectedItems[0].SubItems[0].Text;
+
+                var Q = new FileStream(@"Tasks.json", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                Q.Close();
+                StreamReader sr = new StreamReader(@"Tasks.json");
+                StreamWriter sw = new StreamWriter(@"./Tasks2.json");
+
+                string line = "";
+                int i = 0;
+
+                while (!sr.EndOfStream)
+                {
+                    line = sr.ReadLine();
+
+                    if (line != null)
+                    {
+                        Utente temp = JsonConvert.DeserializeObject<Utente>(line);
+                        if (temp.Id != id)
+                        {
+                            sw.WriteLine(line);
+                        }
+                    }
+                }
+                sr.Close();
+                sw.Close();
+
+                System.IO.File.Delete(@"Tasks.json");
+                System.IO.File.Move(@"./Tasks2.json", @"Tasks.json");
+            }
+            LoadTask();
         }
     }
 }
