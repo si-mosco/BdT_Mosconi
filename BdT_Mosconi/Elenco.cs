@@ -102,7 +102,6 @@ namespace BdT_Mosconi
                 StreamWriter sw = new StreamWriter(@"./Users2.json");
 
                 string line = "";
-                int i = 0;
 
                 while (!sr.EndOfStream)
                 {

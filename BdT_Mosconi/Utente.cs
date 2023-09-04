@@ -133,7 +133,7 @@ namespace BdT_Mosconi
             }
             set
             {
-                if (value != null)
+                if (value >=0)
                     _hours = value;
                 else
                     throw new Exception("Numero di Ore non valido");

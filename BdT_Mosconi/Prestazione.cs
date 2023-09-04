@@ -90,7 +90,7 @@ namespace BdT_Mosconi
             }
             private set
             {
-                if (value != null)
+                if (value >0)
                     _hours = value;
                 else
                     throw new Exception("Numero di Ore non valido");
@@ -135,7 +135,7 @@ namespace BdT_Mosconi
             }
             private set
             {
-                if (value != null)
+                if (value == true || value==false)
                     _complete = value;
                 else
                     throw new Exception("Completamento non valido");

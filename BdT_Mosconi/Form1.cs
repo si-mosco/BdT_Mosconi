@@ -154,7 +154,6 @@ namespace BdT_Mosconi
                 StreamWriter sw = new StreamWriter(@"./Tasks2.json");
 
                 string line = "";
-                int i = 0;
 
                 while (!sr.EndOfStream)
                 {
@@ -181,11 +180,15 @@ namespace BdT_Mosconi
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             LoadTask();
+            if (checkBox1.Checked)
+                label1.Text = "Completed task";
+            else
+                label1.Text = "Uncompleted task";
         }
 
         private void listView1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (listView1.SelectedItems.Count > 0 && e.Button.ToString() == "Right" && L.permission)
+            if (listView1.SelectedItems.Count > 0 && e.Button.ToString() == "Right" && L.permission && checkBox1.Checked==false)
             {
                 string id = listView1.SelectedItems[0].SubItems[0].Text;
                 C.id = id;
