@@ -130,5 +130,10 @@ namespace BdT_Mosconi
             e.Cancel = true;
             this.Visible = false;
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

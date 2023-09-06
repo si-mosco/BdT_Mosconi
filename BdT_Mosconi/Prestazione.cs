@@ -90,7 +90,7 @@ namespace BdT_Mosconi
             }
             private set
             {
-                if (value >0)
+                if (value != null)
                     _hours = value;
                 else
                     throw new Exception("Numero di Ore non valido");
@@ -184,13 +184,6 @@ namespace BdT_Mosconi
         public override string ToString()
         {
             return $"Prestazione: {Id}; {Job}; {Description}; {Requester}; {Worker}; {Hours}; {Date}; {Complete}";
-        }
-
-        public void Completamento(Utente worker, DateTime date)
-        {
-            Worker = worker;
-            Date = date;
-            Complete = true;
         }
     }
 }

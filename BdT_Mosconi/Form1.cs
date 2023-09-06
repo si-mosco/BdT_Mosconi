@@ -26,8 +26,8 @@ namespace BdT_Mosconi
             listView1.Columns.Add("ID", 120);
             listView1.Columns.Add("REQUESTER", 90);
             listView1.Columns.Add("HOURS", 60);
-            listView1.Columns.Add("JOB", 75);
-            listView1.Columns.Add("DESCRIPTION", 125);
+            listView1.Columns.Add("JOB", 90);
+            listView1.Columns.Add("DESCRIPTION", 150);
             
         }
 
@@ -194,6 +194,16 @@ namespace BdT_Mosconi
                 C.id = id;
                 C.Show();
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
